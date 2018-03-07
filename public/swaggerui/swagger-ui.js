@@ -1779,6 +1779,10 @@ var SwaggerHttp = module.exports = function () {};
 SwaggerHttp.prototype.execute = function (obj, opts) {
   var client;
 
+    if(obj && obj.headers && obj.headers.authorization && obj.headers.authorization != '' && obj.headers.authorization.search('Bearer') === -1){
+        obj.headers.authorization = 'Bearer '+obj.headers.authorization
+    }
+
   if(opts && opts.client) {
     client = opts.client;
   }
